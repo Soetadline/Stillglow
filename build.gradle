@@ -30,20 +30,20 @@ loom {
 dependencies {
 	// Minecraft is shipped unobfuscated in 26.3; no mappings dependency is needed.
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API — required. Provides tick events, particle/entity helpers,
 	// networking and rendering hooks used throughout this mod.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// Cloth Config API — required by the in-game menu (see README "Libraries used").
-	modImplementation "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
+	implementation "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
 
 	// Mod Menu — optional. Lets Stillglow's config screen show up under
 	// the vanilla "Mods" button. The mod works fine without it (see
 	// StillglowClient for the fallback keybind), it just won't appear
 	// in the Mod Menu list.
-	modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
+	implementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
 }
 
 processResources {
