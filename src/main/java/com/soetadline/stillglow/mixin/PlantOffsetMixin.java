@@ -30,7 +30,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class PlantOffsetMixin {
 
     @Inject(method = "getModelOffset", at = @At("RETURN"), cancellable = true)
-    private void stillglow$stillPlants(BlockView world, BlockPos pos, CallbackInfoReturnable<Vec3> cir) {
+    private void stillglow$stillPlants(BlockGetter world, BlockPos pos, CallbackInfoReturnable<Vec3> cir) {
         if (Stillglow.config().visuals.stillPlants) {
             cir.setReturnValue(Vec3.ZERO);
         }

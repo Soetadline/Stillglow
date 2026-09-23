@@ -5,6 +5,7 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.server.level.ServerLevel;
@@ -22,12 +23,12 @@ public class Stillglow implements ModInitializer {
     public static final String MOD_ID = "stillglow";
 
     /** Runs the merge sweep once a second (every 20 ticks) per world, not every tick. */
-    private final Map<ServerWorld, Integer> tickCounters = new HashMap<>();
+    private final Map<ServerLevel, Integer> tickCounters = new HashMap<>();
 
     @Override
     public void onInitialize() {
         AutoConfig.register(StillglowConfig.class, GsonConfigSerializer::new);
-        ServerTickEvents.END_WORLD_TICK.register(this::mergeOrbs);
+        ServerTickEvents.END_SERVER_TICK.register(this::onServerTick);
     }
 
     public static StillglowConfig config() {
@@ -41,7 +42,13 @@ public class Stillglow implements ModInitializer {
      * are already loaded and ticking — never forces chunks to load, and
      * never touches any other entity type.
      */
-    private void mergeOrbs(ServerWorld world) {
+    private void onServerTick(MinecraftServer server) {
+        for (ServerLevel world : server.getAllLevels()) {
+            mergeOrbs(world);
+        }
+    }
+
+    private void mergeOrbs(ServerLevel world) {
         StillglowConfig cfg = config();
         if (!cfg.performance.mergeExperienceOrbs) return;
 
@@ -66,12 +73,12 @@ public class Stillglow implements ModInitializer {
             if (group.size() < 2) continue;
 
             int totalXp = 0;
-            Vec3 pos = group.get(0).getPos();
+            Vec3 pos = group.get(0).position();
             for (ExperienceOrb orb : group) {
-                totalXp += orb.getExperienceAmount();
+                totalXp += orb.getValue();
                 orb.discard();
             }
-            ExperienceOrb.spawn(world, pos, totalXp);
+            ExperienceOrb.award(world, pos, totalXp);
         }
     }
 }
