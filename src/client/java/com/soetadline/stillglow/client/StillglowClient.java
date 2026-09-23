@@ -16,7 +16,7 @@ public final class StillglowClient implements ClientModInitializer {
                 "key.stillglow.open_config",
                 InputConstants.Type.KEYBOARD,
                 InputConstants.UNKNOWN.getValue(),
-                "category.stillglow"
+                KeyMapping.Category.MISC
         ));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (openConfigKey.consumeClick()) {
