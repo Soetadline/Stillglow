@@ -4,7 +4,12 @@
   "package": "com.soetadline.stillglow.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "SwordGlintMixin",
     "PlantOffsetMixin"
+  ],
+  "client": [
+    "client.DarkModeOverlayMixin",
+    "client.ExplosionParticleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

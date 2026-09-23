@@ -36,6 +36,8 @@ dependencies {
 	// networking and rendering hooks used throughout this mod.
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	clientImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	clientImplementation "net.fabricmc.fabric-api:fabric-key-mapping-api-v1:${project.fabric_version}"
+	clientImplementation "net.fabricmc.fabric-api:fabric-lifecycle-events-v1:${project.fabric_version}"
 
 	// Cloth Config API — required by the in-game menu (see README "Libraries used").
 	implementation "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"
