@@ -9,7 +9,9 @@
   ],
   "client": [
     "client.DarkModeOverlayMixin",
-    "client.ExplosionParticleMixin"
+    "client.ExplosionParticleMixin",
+    "client.ExperienceOrbColorMixin",
+    "client.NightVisionLightmapMixin"
   ],
   "injectors": {
     "defaultRequire": 1
