@@ -25,11 +25,11 @@ The built jar lands in `build/libs/stillglow-1.0.0.jar`. Drop it in your
 
 ## Downloads you'll need before building
 
-Because 26.3 is recent, the exact compatible dependency builds are pinned in
-`gradle.properties` and should be checked against Fabric's version picker if
-the upstream artifacts change:
+Minecraft 26.3 uses Mojang's official mappings; Yarn mappings are not published
+for this post-obfuscation release. Compatible dependency builds are pinned in
+`gradle.properties`:
 
-- Yarn mappings + Loader: https://fabricmc.net/develop/ (pick "26.3")
+- Fabric Loader: https://fabricmc.net/develop/ (pick "26.3")
 - Fabric API: https://modrinth.com/mod/fabric-api/versions?g=26.3
 - Cloth Config: https://modrinth.com/mod/cloth-config/versions?g=26.3
 - Mod Menu: https://modrinth.com/mod/modmenu/versions?g=26.3
