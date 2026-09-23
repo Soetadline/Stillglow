@@ -7,7 +7,6 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 
 /**
@@ -100,10 +99,7 @@ public final class StillglowConfigScreen {
 
         about.addEntry(eb.startTextDescription(Component.literal("Stillglow — developed by Soetadline")).build());
 
-        Component link = Component.literal("github.com/Soetadline").styled(style -> style
-                .withUnderline(true)
-                .withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/Soetadline")));
-        about.addEntry(eb.startTextDescription(link).build());
+        about.addEntry(eb.startTextDescription(Component.literal("github.com/Soetadline")).build());
 
         return builder.build();
     }
