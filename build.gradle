@@ -28,9 +28,8 @@ loom {
 }
 
 dependencies {
-	// Minecraft / official Mojang mappings / loader
+	// Minecraft is shipped unobfuscated in 26.3; no mappings dependency is needed.
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API — required. Provides tick events, particle/entity helpers,
