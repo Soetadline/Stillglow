@@ -9,6 +9,29 @@ Developer: **Soetadline** — https://github.com/Soetadline
 
 ---
 
+## v1.1.0 — Minecraft 26.3 compatibility and feature restoration
+
+This release is built for Minecraft **26.3**, Fabric, and Java **25**. It restores the complete feature set that was temporarily disabled during the 26.3 API migration:
+
+- Sword enchantment-glint control through the 26.3 `ItemStack` foil API.
+- XP orb color-animation control through the 26.3 orb renderer.
+- Local infinite night vision through the 26.3 lightmap path, without applying a server-side potion effect.
+- Dark Mode UI overlay for vanilla screens.
+- Totem and explosion particle filtering.
+- `StillglowClient` keybind support for opening the configuration screen directly.
+
+The release also fixes the Minecraft 26.3 migration issues involving official Mojang mappings, unobfuscated Loom configuration, server tick events, entity iteration, client source sets, key mappings, screen APIs, and the new rendering classes. The build was verified by GitHub Actions before release.
+
+### Requirements
+
+Minecraft Java Edition **26.3**, Java **25**, Fabric Loader, Fabric API, and Cloth Config API are required. Mod Menu remains optional but is recommended for opening the configuration screen. The mod is not intended for Bedrock Edition.
+
+### License
+
+The existing project license remains unchanged: **CC BY-NC-SA 4.0**, with attribution to **Soetadline**. See [`LICENSE`](LICENSE) for the complete license text.
+
+---
+
 ## Build environment
 
 Minecraft 26.3 requires Java 25. The included Gradle Wrapper uses Gradle 9.1.0,
