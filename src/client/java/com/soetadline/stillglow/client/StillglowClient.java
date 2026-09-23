@@ -14,14 +14,14 @@ public final class StillglowClient implements ClientModInitializer {
     public void onInitializeClient() {
         openConfigKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 "key.stillglow.open_config",
-                InputConstants.Type.KEYSYM,
+                InputConstants.Type.KEYBOARD,
                 InputConstants.UNKNOWN,
                 "category.stillglow"
         ));
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (openConfigKey.consumeClick()) {
-                if (client.screen == null) {
-                    client.setScreen(StillglowConfigScreen.build(null));
+                if (client.screen() == null) {
+                    client.showScreen(StillglowConfigScreen.build(null));
                 }
             }
         });
