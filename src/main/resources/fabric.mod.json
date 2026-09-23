@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "stillglow",
+  "version": "${version}",
+  "name": "Stillglow",
+  "description": "Optional, off-by-default tweaks for XP orb clutter, foliage wind-sway (shader compat), infinite night vision, a recolored Totem of Undying, enchant glint, and explosion effects — all controlled from one config screen.",
+  "authors": [
+    "Soetadline"
+  ],
+  "contact": {
+    "sources": "https://github.com/Soetadline",
+    "homepage": "https://github.com/Soetadline"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/stillglow/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.soetadline.stillglow.Stillglow"
+    ],
+    "client": [
+      "com.soetadline.stillglow.client.StillglowClient"
+    ],
+    "modmenu": [
+      "com.soetadline.stillglow.client.StillglowModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "stillglow.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "fabric-api": "*",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "cloth-config2": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}

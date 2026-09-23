@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.soetadline.stillglow.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "SwordGlintMixin",
+    "PlantOffsetMixin"
+  ],
+  "client": [
+    "client.ExperienceOrbColorMixin",
+    "client.NightVisionLightmapMixin",
+    "client.DarkModeOverlayMixin",
+    "client.ExplosionParticleMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
