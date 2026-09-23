@@ -59,7 +59,7 @@ public class Stillglow implements ModInitializer {
         double cell = Math.max(1, cfg.performance.mergeRadius);
         Map<BlockPos, List<ExperienceOrb>> buckets = new HashMap<>();
 
-        for (Entity entity : world.iterateEntities()) {
+        for (Entity entity : world.getAllEntities()) {
             if (!(entity instanceof ExperienceOrb orb) || !orb.isAlive()) continue;
             BlockPos key = new BlockPos(
                     Mth.floor(orb.getX() / cell),
