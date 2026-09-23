@@ -1,10 +1,10 @@
 package com.soetadline.stillglow.mixin;
 
 import com.soetadline.stillglow.Stillglow;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.BlockView;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.BlockGetter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,15 +24,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * Target method name/signature may differ slightly across 26.x builds
  * (Mojang has renamed it before between drops) — if compilation fails,
  * search your IDE's decompiled BlockState for the method returning a
- * Vec3d "model offset" and update `method` below to match.
+ * Vec3 "model offset" and update `method` below to match.
  */
 @Mixin(BlockState.class)
 public class PlantOffsetMixin {
 
     @Inject(method = "getModelOffset", at = @At("RETURN"), cancellable = true)
-    private void stillglow$stillPlants(BlockView world, BlockPos pos, CallbackInfoReturnable<Vec3d> cir) {
+    private void stillglow$stillPlants(BlockView world, BlockPos pos, CallbackInfoReturnable<Vec3> cir) {
         if (Stillglow.config().visuals.stillPlants) {
-            cir.setReturnValue(Vec3d.ZERO);
+            cir.setReturnValue(Vec3.ZERO);
         }
     }
 }

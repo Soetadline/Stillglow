@@ -3,9 +3,9 @@ package com.soetadline.stillglow.mixin.client;
 import com.soetadline.stillglow.Stillglow;
 import com.soetadline.stillglow.config.StillglowConfig;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleManager;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.client.particle.ParticleEngine;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -28,15 +28,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * settling internal method names. One combined switch is the reliable
  * version; see the README for the trade-off.
  */
-@Mixin(ParticleManager.class)
+@Mixin(ParticleEngine.class)
 public class ExplosionParticleMixin {
 
     @Inject(
-            method = "addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)Lnet/minecraft/client/particle/Particle;",
+            method = "addParticle(Lnet/minecraft/particle/ParticleOptions;DDDDDD)Lnet/minecraft/client/particle/Particle;",
             at = @At("HEAD"),
             cancellable = true
     )
-    private void stillglow$filterParticles(ParticleEffect parameters, double x, double y, double z,
+    private void stillglow$filterParticles(ParticleOptions parameters, double x, double y, double z,
                                             double velocityX, double velocityY, double velocityZ,
                                             CallbackInfoReturnable<Particle> cir) {
         StillglowConfig.Explosions cfg = Stillglow.config().explosions;

@@ -5,12 +5,12 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ExperienceOrbEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,28 +50,28 @@ public class Stillglow implements ModInitializer {
         tickCounters.put(world, 0);
 
         double cell = Math.max(1, cfg.performance.mergeRadius);
-        Map<BlockPos, List<ExperienceOrbEntity>> buckets = new HashMap<>();
+        Map<BlockPos, List<ExperienceOrb>> buckets = new HashMap<>();
 
         for (Entity entity : world.iterateEntities()) {
-            if (!(entity instanceof ExperienceOrbEntity orb) || !orb.isAlive()) continue;
+            if (!(entity instanceof ExperienceOrb orb) || !orb.isAlive()) continue;
             BlockPos key = new BlockPos(
-                    MathHelper.floor(orb.getX() / cell),
-                    MathHelper.floor(orb.getY() / cell),
-                    MathHelper.floor(orb.getZ() / cell)
+                    Mth.floor(orb.getX() / cell),
+                    Mth.floor(orb.getY() / cell),
+                    Mth.floor(orb.getZ() / cell)
             );
             buckets.computeIfAbsent(key, k -> new ArrayList<>()).add(orb);
         }
 
-        for (List<ExperienceOrbEntity> group : buckets.values()) {
+        for (List<ExperienceOrb> group : buckets.values()) {
             if (group.size() < 2) continue;
 
             int totalXp = 0;
-            Vec3d pos = group.get(0).getPos();
-            for (ExperienceOrbEntity orb : group) {
+            Vec3 pos = group.get(0).getPos();
+            for (ExperienceOrb orb : group) {
                 totalXp += orb.getExperienceAmount();
                 orb.discard();
             }
-            ExperienceOrbEntity.spawn(world, pos, totalXp);
+            ExperienceOrb.spawn(world, pos, totalXp);
         }
     }
 }
