@@ -18,9 +18,6 @@
     "main": [
       "com.soetadline.stillglow.Stillglow"
     ],
-    "client": [
-      "com.soetadline.stillglow.client.StillglowClient"
-    ],
     "modmenu": [
       "com.soetadline.stillglow.client.StillglowModMenuIntegration"
     ]
